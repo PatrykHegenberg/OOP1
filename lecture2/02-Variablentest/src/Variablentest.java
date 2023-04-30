@@ -15,7 +15,7 @@ public class Variablentest {
         i1 = i1 * i2;
         System.out.println(i1);
         i1 = i1 * i2;
-        System.out.println(i1);
+        System.out.println(i1); // Ab hier Fehler
         i1 = i1 * i2;
         System.out.println(i1);
         i1 = i1 * i2;
