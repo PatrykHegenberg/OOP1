@@ -1,0 +1,87 @@
+---
+title: "UML-Diagramm Fuhrpark"
+---
+
+```{mermaid}
+classDiagram
+    class Datum{
+        -int tag
+        -int monat
+        -int jahr
+        +int getTag()
+        +int getMonat()
+        +int getJahr()
+        +void setTag(int t)
+        +void setMonat(int m)
+        +void setJahr(int j)
+        +void setDatum(int t, int m, int j)
+        -int maxTageImMonat(int m)
+        -boolean istSchaltjahr(int m)
+        +String datumZuString(boolean lang)
+        -Datum getFolgeTag()
+        -int datumZuInt()
+        -int anzahlSchaljahreSeit1900(int j)
+        -String getWochentag()
+        -String getMonatsname(int m, boolean lang)
+    }
+    class Fahrzeug{
+        -String kennzeichen
+        -String marke
+        -int ps
+        -int kmStand
+        -String mietStatus
+        -Datum inspektionsDatum
+        +String getKennzeichen()
+        +String getMarke()
+        +int getPs()
+        +int getKmStand()
+        +String getMietStatus()
+        +void setKennzeichen(String k)
+        +void setMarke(String m)
+        +void setPs(int p)
+        +void setKmStand(int k)
+        +void setMietStatus(String m)
+        +Datum getInspektionsDatum()
+    }
+    class Fuhrparkverwaltung{
+        +void main()
+        +Fahrzeug fzg1
+        +Fahrzeug fzg2
+        +Fahrzeug fzg3
+        +Datum heuteDatum
+        +Standort zentrale
+        +Standort nord
+        +Standort sued
+    }
+    class Standort{
+        -int id
+        -String name
+        -String plz
+        -String Ort
+        -String strasse
+        -String hausnummer
+        -int maxPlaetze
+        -int belegtePlaetze
+        -int freiePlaetze
+        +String getId()
+        +String getName()
+        +String getAdresse()
+        +int getMaxPlaetze()
+        +int getFreiePlaetze()
+        +int getBelegtePlaetze()
+        +void setId(int i)
+        +void setName(String n)
+        +void setAdresse(String p, String o, String s, String h)
+        +void getInfo()
+        +void setMaxPlaetze(int m)
+        -void setFreiePlaetze(int f)
+        -void setBelegtePlaetze(int b)
+        +void addFahrzeug(Standort z)
+        +void delFahrzeug()
+    }
+    Fuhrparkverwaltung <|-- Fahrzeug
+    Fuhrparkverwaltung <|-- Datum
+    Fuhrparkverwaltung <|-- Standort
+    Fahrzeug <|-- Datum
+
+```

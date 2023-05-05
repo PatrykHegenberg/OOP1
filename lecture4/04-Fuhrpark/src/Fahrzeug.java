@@ -1,7 +1,6 @@
 //import java.sql.Date;
 import java.util.Calendar;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 public class Fahrzeug {
 	// Attribute

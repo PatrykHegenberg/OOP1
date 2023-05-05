@@ -39,6 +39,37 @@ public class Fuhrparkverwaltung {
 		heuteDatum = new Datum(17, 4, 2023);
 		System.out.println(heuteDatum.datumZuInt());	
 		System.out.println(heuteDatum.getWochentag());
+		
+		Standort zentrale, nord, sued;
+
+		zentrale = new Standort(1, "Zentrale", "34567", "Mittelhausen", "Hauptstraße", "1", 6, 3);
+		nord = new Standort(2, "Nord", "12345", "Sielstadt", "Am Kanal", "2", 4);
+		sued = new Standort(3, "Sued", "89012", "Joddeldorf", "Kirchweg", "17b", 2);
+		
+		System.out.println(zentrale.getInfo());
+		System.out.println(nord.getInfo());
+		System.out.println(sued.getInfo());
+
+		nord.addFahrzeug(zentrale);
+		sued.addFahrzeug(zentrale);
+
+		System.out.println(zentrale.getInfo());
+		System.out.println(nord.getInfo());
+		System.out.println(sued.getInfo());
+
+		nord.addFahrzeug(zentrale);
+		sued.addFahrzeug(zentrale);
+
+		System.out.println(zentrale.getInfo());
+		System.out.println(nord.getInfo());
+		System.out.println(sued.getInfo());
+
+		nord.addFahrzeug(zentrale);
+		sued.addFahrzeug(zentrale);
+
+		System.out.println(zentrale.getInfo());
+		System.out.println(nord.getInfo());
+		System.out.println(sued.getInfo());
 	}
 
 }
