@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.258">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -166,6 +166,157 @@ ul.task-list li input[type="checkbox"] {
 
     Bestellung o-- Bestellposition
     Bestellung o-- Kunde
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">classDiagram {
+    class Kunde {
+        - kundennummer: int
+        - name: String
+        - vorname: String
+        - adresse: Adresse
+        - telefonnummer: String
+        + Kunde(name: String, vorname: String, adresse: Adresse, telefonnummer: String)
+        + getName(): String
+        + getVorname(): String
+        + getAdresse(): Adresse
+        + getTelefonnummer(): String
+        + setName(name: String): void
+        + setVorname(vorname: String): void
+        + setAdresse(adresse: Adresse): void
+        + setTelefonnummer(telefonnummer: String): void
+        + deaktivieren(): void
+    }
+    
+    class Firmenkunde {
+        - firmenname: String
+        - umsatzsteuerID: String
+        - rechnungsanschrift: Adresse
+        + Firmenkunde(name: String, vorname: String, adresse: Adresse, telefonnummer: String, firmenname: String, umsatzsteuerID: String, rechnungsanschrift: Adresse)
+        + getFirmenname(): String
+        + getUmsatzsteuerID(): String
+        + getRechnungsanschrift(): Adresse
+        + setFirmenname(firmenname: String): void
+        + setUmsatzsteuerID(umsatzsteuerID: String): void
+        + setRechnungsanschrift(rechnungsanschrift: Adresse): void
+    }
+    
+    class Adresse {
+        - strasse: String
+        - plz: String
+        - ort: String
+        + Adresse(strasse: String, plz: String, ort: String)
+        + getStrasse(): String
+        + getPLZ(): String
+        + getOrt(): String
+        + setStrasse(strasse: String): void
+        + setPLZ(plz: String): void
+        + setOrt(ort: String): void
+    }
+    
+    class Kundenkartei {
+        - kunden: List&lt;Kunde&gt;
+        + Kundenkartei()
+        + addKunde(kunde: Kunde): void
+        + getAnzahlKunden(): int
+        + getKunden(): List&lt;Kunde&gt;
+        + getKundeByKundennummer(kundennummer: int): Kunde
+    }
+        
+    class Bestellung {
+        - kunde: Kunde
+        - bestelldatum: Date
+        - lieferung: boolean
+        - rechnung: boolean
+        - bestellpositionen: List&lt;Bestellposition&gt;
+        - anmerkungen: String
+        - gesamtpreis: double
+        - kassenbon: String
+
+        + Bestellung(kunde: Kunde, bestelldatum: Date, lieferung: boolean, rechnung: boolean, anmerkungen: String)
+        + getKunde(): Kunde
+        + getBestelldatum(): Date
+        + isLieferung(): boolean
+        + isRechnung(): boolean
+        + getBestellpositionen(): List&lt;Bestellposition&gt;
+        + getAnmerkungen(): String
+        + getGesamtpreis(): double
+        + getKassenbon(): String
+        + setKunde(kunde: Kunde): void
+        + setBestelldatum(bestelldatum: Date): void
+        + setLieferung(lieferung: boolean): void
+        + setRechnung(rechnung: boolean): void
+        + setBestellpositionen(bestellpositionen: List&lt;Bestellposition&gt;): void
+        + setAnmerkungen(anmerkungen: String): void
+        + setGesamtpreis(gesamtpreis: double): void
+        + setKassenbon(kassenbon: String): void
+    }
+        
+
+    class Artikel {
+        - name: String
+        - preis: double
+        + Artikel(name: String, preis: double)
+        + getName(): String
+        + getPreis(): double
+        + setName(name: String): void
+        + setPreis(preis: double): void
+    }
+    
+    class Pizza {
+        - groessen: List&lt;String&gt;
+        - zutaten: List&lt;String&gt;
+        + Pizza(name: String, preis: double, groessen: List&lt;String&gt;, zutaten: List&lt;String&gt;)
+        + getGroessen(): List&lt;String&gt;
+        + getZutaten(): List&lt;String&gt;
+        + setGroessen(groessen: List&lt;String&gt;): void
+        + setZutaten(zutaten: List&lt;String&gt;): void
+    }
+    
+    class Salat {
+        - groessen: List&lt;String&gt;
+        - dressings: List&lt;String&gt;
+        + Salat(name: String, preis: double, groessen: List&lt;String&gt;, dressings: List&lt;String&gt;)
+        + getGroessen(): List&lt;String&gt;
+        + getDressings(): List&lt;String&gt;
+        + setGroessen(groessen: List&lt;String&gt;): void
+        + setDressings(dressings: List&lt;String&gt;): void
+    }
+    
+    class Bestellposition {
+        - anzahl: int
+        - artikel: Artikel
+        - groesse: String
+        - preis: double
+
+        + Bestellposition(anzahl: int, artikel: Artikel, groesse: String, preis: double)
+        + getAnzahl(): int
+        + getArtikel(): Artikel
+        + getGroesse(): String
+        + getPreis(): double
+        + setAnzahl(anzahl: int): void
+        + setArtikel(artikel: Artikel): void
+        + setGroesse(groesse: String): void
+        + setPreis(preis: double): void
+    }
+    
+    Kundenkartei --&gt; Kunde
+    Bestellung --&gt; Kunde
+    Bestellung --&gt; Bestellposition
+    Bestellposition --&gt; Artikel
+    Bestellposition --&gt; Pizza
+    Bestellposition --&gt; Salat
+    Artikel &lt;|-- Pizza
+    Artikel &lt;|-- Salat
+    Kunde &lt;--| Firmenkunde
+    Kunde --&gt; Adresse
+}
 </pre>
 </div>
 </div>

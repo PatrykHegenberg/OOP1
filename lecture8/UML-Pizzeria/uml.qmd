@@ -23,7 +23,7 @@ classDiagram
                      firmenname: String, umsatzsteuer_id: String, rechnungsanschrift: String)
     }
 
-    class Kundenverwaltung {
+    class Kundenkartei {
         - kundenkartei: List<Kunde>
         + kundeAnlegen(kunde: Kunde): void
         + kundenDatenAendern(kundennummer: int, name: String, vorname: String, telefonnummer: String): void
@@ -33,10 +33,7 @@ classDiagram
         + kundeSuchen(kundennummer: int): Kunde
     }
 
-    Kunde <|-- Firmenkunde
-
-    Kundenverwaltung --> Kunde
-        class Artikel {
+    class Artikel {
         +name: String
         +preis: double
         +anzeigen(): void
@@ -58,10 +55,6 @@ classDiagram
         +sortiment_laden(): void
         +anzeigen(artikelart: String): void
     }
-    
-    Artikel <|-- Pizza
-    Artikel <|-- Salat
-    Sortiment o-- Artikel
 
     class Bestellung {
         +kunde: Kunde
@@ -96,11 +89,11 @@ classDiagram
         RECHNUNG
     }
     
-    class Artikel {
-        +name: String
-        +preis: double
-    }
-
+    Kunde <|-- Firmenkunde
+    Kundenkartei --> Kunde
+    Artikel <|-- Pizza
+    Artikel <|-- Salat
+    Sortiment o-- Artikel
     Bestellung o-- Bestellposition
     Bestellung o-- Kunde
 ```
