@@ -1,0 +1,106 @@
+
+---
+title: "UML-Diagramm Pizzeria"
+---
+
+```{mermaid}
+classDiagram
+    class Kunde {
+        - kundennummer: int
+        - name: String
+        - vorname: String
+        - telefonnummer: String
+        - anschrift: String
+        + Kunde(kundennummer: int, name: String, vorname: String, telefonnummer: String)
+        + toString(): String
+    }
+
+    class Firmenkunde {
+        - firmenname: String
+        - umsatzsteuer_id: String
+        - rechnungsanschrift: String
+        + Firmenkunde(kundennummer: int, name: String, vorname: String, telefonnummer: String,
+                     firmenname: String, umsatzsteuer_id: String, rechnungsanschrift: String)
+    }
+
+    class Kundenverwaltung {
+        - kundenkartei: List<Kunde>
+        + kundeAnlegen(kunde: Kunde): void
+        + kundenDatenAendern(kundennummer: int, name: String, vorname: String, telefonnummer: String): void
+        + kundeDeaktivieren(kundennummer: int): void
+        + firmenkundeAnlegen(kunde: Firmenkunde): void
+        + kundenkarteiLaden(): List<Kunde>
+        + kundeSuchen(kundennummer: int): Kunde
+    }
+
+    Kunde <|-- Firmenkunde
+
+    Kundenverwaltung --> Kunde
+        class Artikel {
+        +name: String
+        +preis: double
+        +anzeigen(): void
+    }
+    
+    class Pizza {
+        +groessen: List<String>
+        +anzeigen(): void
+    }
+    
+    class Salat {
+        +groessen: List<String>
+        +dressings: List<String>
+        +anzeigen(): void
+    }
+    
+    class Sortiment {
+        -artikel: List<Artikel>
+        +sortiment_laden(): void
+        +anzeigen(artikelart: String): void
+    }
+    
+    Artikel <|-- Pizza
+    Artikel <|-- Salat
+    Sortiment o-- Artikel
+
+    class Bestellung {
+        +kunde: Kunde
+        +bestelldatum: Date
+        +lieferart: Lieferart
+        +zahlungsart: Zahlungsart
+        +bestellpositionen: List<Bestellposition>
+        +anmerkungen: String
+        +gesamtpreis: double
+        +kassenbon: String
+        +hinzufuegenBestellposition(position: Bestellposition): void
+        +entfernenBestellposition(position: Bestellposition): void
+        +aendernBestellposition(position: Bestellposition): void
+        +ermittleGesamtpreis(): void
+        +erstelleKassenbon(): void
+    }
+    
+    class Bestellposition {
+        +anzahl: int
+        +artikel: Artikel
+        +groesseDressing: String
+        +preis: double
+    }
+    
+    class Lieferart {
+        LIEFERN
+        ABHOLEN
+    }
+    
+    class Zahlungsart {
+        BAR
+        RECHNUNG
+    }
+    
+    class Artikel {
+        +name: String
+        +preis: double
+    }
+
+    Bestellung o-- Bestellposition
+    Bestellung o-- Kunde
+```
