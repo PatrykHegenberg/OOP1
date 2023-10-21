@@ -1,0 +1,23 @@
+---
+title: Vermietung
+theme: dark
+htmlLabels: false
+---
+classDiagram
+	class Ferienhaus{
+		-int betten
+		-int zimmer
+		-String name
+		-boolean istVermietet
+		-double preis
+		+boolean getStatus()
+		+void mieten()
+	}
+	class Ferienappartment{
+		-int betten
+		-String name
+		-boolean istVermietet
+		-double preis
+		+boolean getStatus()
+		+void mieten()
+	}
